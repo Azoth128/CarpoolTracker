@@ -15,7 +15,7 @@ namespace CarpoolTracker.Services
             if (t.GetType().GetInterfaces().Any(x =>
             {
                 return x.IsGenericType
-                    && x.GetGenericTypeDefinition() == typeof(IHasDefaults<T>);
+                    && x.GetGenericTypeDefinition() == typeof(IHasDefaults<>);
             })) {
                 items = (t as IHasDefaults<T>).DefaultValues();
             };
