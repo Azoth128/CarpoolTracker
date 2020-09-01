@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using CarpoolTracker.Services;
 using CarpoolTracker.Views;
+using CarpoolTracker.Models;
 
 namespace CarpoolTracker
 {
@@ -13,7 +14,11 @@ namespace CarpoolTracker
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<MockDataStore<Item>>();
+            DependencyService.Register<MockDataStore<Person>>();
+            DependencyService.Register<MockDataStore<Track>>();
+            DependencyService.Register<MockDataStore<Drive>>();
+
             MainPage = new AppShell();
         }
 

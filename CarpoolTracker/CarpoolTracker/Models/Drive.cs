@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CarpoolTracker.Models
 {
-    public class Drive
+    public class Drive : IDataModel
     {
         public string Id { get; set; }
         public Track Track { get; set; }
