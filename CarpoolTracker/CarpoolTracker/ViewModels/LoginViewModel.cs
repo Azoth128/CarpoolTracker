@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel<object>
     {
         public Command LoginCommand { get; }
 

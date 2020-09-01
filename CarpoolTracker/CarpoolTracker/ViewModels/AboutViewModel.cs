@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutViewModel : BaseViewModel<object>
     {
         public AboutViewModel()
         {
