@@ -15,7 +15,7 @@ namespace CarpoolTracker.Models
         {
             return new List<Track>()
             {
-                new Track() {Id = new Guid().ToString(), Name = "Work", Distance = 42}
+                new Track() {Id = Guid.NewGuid().ToString(), Name = "Work", Distance = 42}
             };
         }
     }

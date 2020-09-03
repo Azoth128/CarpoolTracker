@@ -21,14 +21,14 @@ namespace CarpoolTracker.Services
             };
         }
 
-        public async Task<bool> AddItemAsync(T t)
+        public async Task<bool> AddAsync(T t)
         {
             items.Add(t);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(T t)
+        public async Task<bool> UpdateAsync(T t)
         {
             var oldItem = items.Where(arg => arg.Id == t.Id).FirstOrDefault();
             items.Remove(oldItem);
@@ -37,7 +37,7 @@ namespace CarpoolTracker.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteAsync(string id)
         {
             var oldItem = items.Where(arg => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
@@ -45,12 +45,12 @@ namespace CarpoolTracker.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<T> GetItemAsync(string id)
+        public async Task<T> GetAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<T>> GetListAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }

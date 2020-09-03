@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarpoolTracker.Android", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarpoolTracker.iOS", "CarpoolTracker\CarpoolTracker.iOS\CarpoolTracker.iOS.csproj", "{624DBA35-95B2-4AB4-91FA-4B7E5115DBDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarpoolTracker", "CarpoolTracker\CarpoolTracker\CarpoolTracker.csproj", "{6E561FB4-D137-4B3E-A11E-84F01462A034}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarpoolTracker", "CarpoolTracker\CarpoolTracker\CarpoolTracker.csproj", "{6E561FB4-D137-4B3E-A11E-84F01462A034}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

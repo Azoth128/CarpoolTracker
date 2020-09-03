@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarpoolTracker.Views.PersonDetailPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:CarpoolTracker.ViewModels"
+             xmlns:cp="clr-namespace:Xam.Plugin.SimpleColorPicker;assembly=Xam.Plugin.SimpleColorPicker"
+             >
+    <StackLayout x:DataType="local:PersonDetailViewModel" Spacing="20" Padding="15">
+        <Label Text="Name:" FontSize="Medium" />
+        <Label Text="{Binding Name}" FontSize="Small"/>
+        <Label Text="Surname:" FontSize="Medium" />
+        <Label Text="{Binding Surname}" FontSize="Small"/>
+        <Label Text="Color:" FontSize="Medium" />
+        <Frame BackgroundColor="{Binding Color}"></Frame>
+    </StackLayout>
+</ContentPage>

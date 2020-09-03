@@ -15,7 +15,7 @@ namespace CarpoolTracker.Views
 {
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        readonly ItemsViewModel _viewModel;
 
         public ItemsPage()
         {

@@ -22,8 +22,8 @@ namespace CarpoolTracker.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !(string.IsNullOrWhiteSpace(text)
+                || string.IsNullOrWhiteSpace(description));
         }
 
         public string Text
@@ -56,7 +56,7 @@ namespace CarpoolTracker.ViewModels
                 Description = Description
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await DataStore.AddAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
