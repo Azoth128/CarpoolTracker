@@ -16,6 +16,7 @@ namespace CarpoolTracker.ViewModels
 
         public Command LoadItemsCommand { get; }
         public Command<Person> ItemTappedCommand { get; }
+        public Command NewCommand { get; }
 
         public PeoplesViewModel()
         {
@@ -23,6 +24,12 @@ namespace CarpoolTracker.ViewModels
             Items = new ObservableCollection<Person>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTappedCommand = new Command<Person>(ExecuteItemTappedCommand);
+            NewCommand = new Command(ExecuteNewCommand);
+        }
+
+        private async void ExecuteNewCommand(object obj)
+        {
+            await Shell.Current.GoToAsync($"{nameof(PersonEditPage)}");
         }
 
         public async void OnAppearing()

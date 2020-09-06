@@ -1,4 +1,5 @@
 ﻿using CarpoolTracker.Models;
+using System;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
@@ -16,6 +17,7 @@ namespace CarpoolTracker.ViewModels
         public string Name { get => name; set => SetProperty(ref name, value); }
         public string Surname { get => surname; set => SetProperty(ref surname, value); }
         public Color Color { get => color; set => SetProperty(ref color, value); }
+        private bool IsInsert { get => PersonId == null || PersonId == ""; }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
@@ -23,7 +25,6 @@ namespace CarpoolTracker.ViewModels
 
         public PersonEditViewModel()
         {
-            
             SaveCommand = new Command(OnSave, CanSave);
             CancelCommand = new Command(OnCancel);
             PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
@@ -31,7 +32,10 @@ namespace CarpoolTracker.ViewModels
 
         private async void OnCancel(object obj)
         {
-            await Shell.Current.GoToAsync($"..?{nameof(PersonDetailViewModel.PersonId)}={PersonId}");
+            if (IsInsert)
+                await Shell.Current.GoToAsync($"..");
+            else
+                await Shell.Current.GoToAsync($"..?{nameof(PersonDetailViewModel.PersonId)}={PersonId}");
         }
 
         private bool CanSave(object arg)
@@ -41,13 +45,26 @@ namespace CarpoolTracker.ViewModels
 
         private async void OnSave(object obj)
         {
-            var person = await DataStore.GetAsync(PersonId);
+            Person person;
+            if (IsInsert)
+                person = new Person() { Id = Guid.NewGuid().ToString() };
+            else
+                person = await DataStore.GetAsync(PersonId);
+
             person.Name = Name;
             person.Surname = Surname;
             person.Color = Color;
-            await DataStore.UpdateAsync(person);
 
-            await Shell.Current.GoToAsync($"..?{nameof(PersonDetailViewModel.PersonId)}={PersonId}");
+            if (IsInsert)
+            {
+                await DataStore.AddAsync(person);
+                await Shell.Current.GoToAsync($"..");
+            }
+            else
+            {
+                await DataStore.UpdateAsync(person);
+                await Shell.Current.GoToAsync($"..?{nameof(PersonDetailViewModel.PersonId)}={PersonId}");
+            }
         }
 
         public void ExecuteColorChangedCommand(object sender, Color e)
