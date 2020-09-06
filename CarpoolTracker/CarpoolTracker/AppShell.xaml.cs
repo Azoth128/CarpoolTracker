@@ -14,6 +14,7 @@ namespace CarpoolTracker
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(PersonDetailPage), typeof(PersonDetailPage));
+            Routing.RegisterRoute(nameof(PersonEditPage), typeof(PersonEditPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
