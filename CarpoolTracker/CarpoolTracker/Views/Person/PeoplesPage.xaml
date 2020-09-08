@@ -17,17 +17,17 @@
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Person">
+                    <StackLayout Padding="15" x:DataType="model:Person">
                         <Label Text="{Binding Name}" 
                             LineBreakMode="NoWrap" 
-                            FontSize="16" />
+                            FontSize="Large" />
 
                         <!--Style="{DynamicResource ListItemTextStyle}"
                             Style="{DynamicResource ListItemDetailTextStyle}"-->
 
                         <Label Text="{Binding Surname}" 
                             LineBreakMode="NoWrap"
-                            FontSize="13" />
+                            FontSize="Small" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
