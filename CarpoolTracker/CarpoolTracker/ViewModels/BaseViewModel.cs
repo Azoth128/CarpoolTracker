@@ -14,7 +14,7 @@ namespace CarpoolTracker.ViewModels
     {
         public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
 
-        bool isBusy = false;
+        private bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
