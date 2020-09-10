@@ -8,6 +8,7 @@ namespace CarpoolTracker.Views
     public partial class TracksPage : ContentPage
     {
         private TracksViewModel viewModel;
+
         public TracksPage()
         {
             InitializeComponent();

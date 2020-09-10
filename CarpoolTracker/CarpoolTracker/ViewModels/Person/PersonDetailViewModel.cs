@@ -1,8 +1,5 @@
 ﻿using CarpoolTracker.Models;
 using CarpoolTracker.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
@@ -50,6 +47,5 @@ namespace CarpoolTracker.ViewModels
             Surname = person.Surname;
             Color = person.Color;
         }
-
     }
 }

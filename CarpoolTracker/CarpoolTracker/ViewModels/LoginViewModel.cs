@@ -1,7 +1,4 @@
 ﻿using CarpoolTracker.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels

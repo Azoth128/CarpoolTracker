@@ -13,6 +13,7 @@ namespace CarpoolTracker.ViewModels
 
         public string Name { get => name; set => SetProperty(ref name, value); }
         public int Distance { get => distance; set => SetProperty(ref distance, value); }
+
         public string TrackId
         {
             get => trackid;

@@ -1,16 +1,14 @@
 ﻿using CarpoolTracker.Models;
 using CarpoolTracker.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
 {
-    class PeoplesViewModel : BaseViewModel<Person>
+    public class PeoplesViewModel : BaseViewModel<Person>
     {
         public ObservableCollection<Person> Items { get; }
 
@@ -65,7 +63,7 @@ namespace CarpoolTracker.ViewModels
             await Shell.Current.GoToAsync($"{nameof(PersonDetailPage)}?{nameof(PersonDetailViewModel.PersonId)}={person.Id}");
         }
 
-        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using CarpoolTracker.Models;
+using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using CarpoolTracker.Models;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels

@@ -1,15 +1,11 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using CarpoolTracker.Models;
 using CarpoolTracker.Services;
-using CarpoolTracker.Views;
-using CarpoolTracker.Models;
+using Xamarin.Forms;
 
 namespace CarpoolTracker
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();

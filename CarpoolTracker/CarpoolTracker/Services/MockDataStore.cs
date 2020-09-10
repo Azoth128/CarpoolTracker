@@ -1,8 +1,7 @@
-﻿using System;
+﻿using CarpoolTracker.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CarpoolTracker.Models;
 
 namespace CarpoolTracker.Services
 {
@@ -10,13 +9,15 @@ namespace CarpoolTracker.Services
     {
         protected List<T> items;
 
-        public MockDataStore() {
+        public MockDataStore()
+        {
             var t = new T();
             if (t.GetType().GetInterfaces().Any(x =>
             {
                 return x.IsGenericType
                     && x.GetGenericTypeDefinition() == typeof(IHasDefaults<>);
-            })) {
+            }))
+            {
                 items = (t as IHasDefaults<T>).DefaultValues();
             };
         }

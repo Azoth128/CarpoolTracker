@@ -1,6 +1,5 @@
-﻿using System.ComponentModel;
+﻿using CarpoolTracker.ViewModels;
 using Xamarin.Forms;
-using CarpoolTracker.ViewModels;
 
 namespace CarpoolTracker.Views
 {

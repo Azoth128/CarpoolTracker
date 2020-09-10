@@ -22,7 +22,6 @@ namespace CarpoolTracker.ViewModels
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
-
         public PersonEditViewModel()
         {
             SaveCommand = new Command(OnSave, CanSave);

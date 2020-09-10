@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using CarpoolTracker.ViewModels;
-using CarpoolTracker.Views;
+﻿using CarpoolTracker.Views;
+using System;
 using Xamarin.Forms;
 
 namespace CarpoolTracker

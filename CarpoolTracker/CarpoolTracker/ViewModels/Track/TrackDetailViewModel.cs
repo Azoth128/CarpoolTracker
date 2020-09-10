@@ -1,8 +1,5 @@
 ﻿using CarpoolTracker.Models;
 using CarpoolTracker.Views;
-using System;
-using System.Linq.Expressions;
-using System.Reflection;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
@@ -10,7 +7,6 @@ namespace CarpoolTracker.ViewModels
     [QueryProperty(nameof(TrackId), nameof(TrackId))]
     public class TrackDetailViewModel : BaseViewModel<Track>
     {
-
         private string trackId;
 
         private string name;
@@ -57,8 +53,5 @@ namespace CarpoolTracker.ViewModels
                 IsBusy = false;
             }
         }
-
-
-
     }
 }

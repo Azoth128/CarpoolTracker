@@ -1,12 +1,10 @@
-﻿using System;
+﻿using CarpoolTracker.Models;
+using CarpoolTracker.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
-using CarpoolTracker.Models;
-using CarpoolTracker.Views;
 
 namespace CarpoolTracker.ViewModels
 {
@@ -30,7 +28,7 @@ namespace CarpoolTracker.ViewModels
             AddItemCommand = new Command(OnAddItem);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
@@ -74,7 +72,7 @@ namespace CarpoolTracker.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        private async void OnItemSelected(Item item)
         {
             if (item == null)
                 return;
