@@ -4,7 +4,6 @@
        xmlns:views="clr-namespace:CarpoolTracker.Views"
        xmlns:viewsPeople="clr-namespace:CarpoolTracker.Views.People"
        xmlns:viewsTracks="clr-namespace:CarpoolTracker.Views.Tracks"
-       xmlns:viewsItems="clr-namespace:CarpoolTracker.Views.Items"
        Title="CarpoolTracker"
        x:Class="CarpoolTracker.AppShell">
 
@@ -84,7 +83,6 @@
     -->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="About" Icon="tab_about.png" Route="AboutPage" ContentTemplate="{DataTemplate views:AboutPage}" />
-        <ShellContent Title="Browse" Icon="tab_feed.png" ContentTemplate="{DataTemplate viewsItems:ItemsPage}" />
         <ShellContent Title="Tracks" ContentTemplate="{DataTemplate viewsTracks:TracksPage}" />
         <ShellContent Title="People" ContentTemplate="{DataTemplate viewsPeople:PeoplePage}" />
     </FlyoutItem>

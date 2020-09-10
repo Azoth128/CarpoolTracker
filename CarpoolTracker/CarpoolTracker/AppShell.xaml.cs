@@ -1,5 +1,4 @@
 ﻿using CarpoolTracker.Views;
-using CarpoolTracker.Views.Items;
 using CarpoolTracker.Views.People;
 using CarpoolTracker.Views.Tracks;
 using System;
@@ -12,8 +11,6 @@ namespace CarpoolTracker
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(PersonDetailPage), typeof(PersonDetailPage));
             Routing.RegisterRoute(nameof(PersonEditPage), typeof(PersonEditPage));
             Routing.RegisterRoute(nameof(TrackDetailPage), typeof(TrackDetailPage));
