@@ -5,9 +5,9 @@ namespace CarpoolTracker.Models
 {
     public class Item : IDataModel, IHasDefaults<Item>
     {
+        public string Description { get; set; }
         public string Id { get; set; }
         public string Text { get; set; }
-        public string Description { get; set; }
 
         public List<Item> DefaultValues()
         {

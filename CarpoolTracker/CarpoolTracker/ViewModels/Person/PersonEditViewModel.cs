@@ -7,20 +7,11 @@ namespace CarpoolTracker.ViewModels
     [Xamarin.Forms.QueryProperty(nameof(PersonId), nameof(PersonId))]
     public class PersonEditViewModel : BaseViewModel<Person>
     {
-        private string personId;
-        private bool firstColorChanged = false;
-
-        private string name;
-        private string surname;
         private System.Drawing.Color color;
-
-        public string Name { get => name; set => SetProperty(ref name, value); }
-        public string Surname { get => surname; set => SetProperty(ref surname, value); }
-        public Color Color { get => color; set => SetProperty(ref color, value); }
-        private bool IsInsert { get => PersonId == null || PersonId == ""; }
-
-        public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
+        private bool firstColorChanged = false;
+        private string name;
+        private string personId;
+        private string surname;
 
         public PersonEditViewModel()
         {
@@ -29,17 +20,44 @@ namespace CarpoolTracker.ViewModels
             PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
         }
 
+        private bool IsInsert { get => PersonId == null || PersonId == ""; }
+        public Command CancelCommand { get; }
+        public Color Color { get => color; set => SetProperty(ref color, value); }
+        public string Name { get => name; set => SetProperty(ref name, value); }
+
+        public string PersonId
+        {
+            get => personId;
+            set
+            {
+                personId = value;
+                LoadItem();
+            }
+        }
+
+        public Command SaveCommand { get; }
+        public string Surname { get => surname; set => SetProperty(ref surname, value); }
+
+        private bool CanSave(object arg)
+        {
+            return !(Name == null) || Name != "";
+        }
+
+        private async void LoadItem()
+        {
+            var person = await DataStore.GetAsync(personId);
+
+            Name = person.Name;
+            Surname = person.Surname;
+            Color = person.Color;
+        }
+
         private async void OnCancel(object obj)
         {
             if (IsInsert)
                 await Shell.Current.GoToAsync($"..");
             else
                 await Shell.Current.GoToAsync($"..?{nameof(PersonDetailViewModel.PersonId)}={PersonId}");
-        }
-
-        private bool CanSave(object arg)
-        {
-            return !(Name == null) || Name != "";
         }
 
         private async void OnSave(object obj)
@@ -74,25 +92,6 @@ namespace CarpoolTracker.ViewModels
                 return;
             }
             Color = e;
-        }
-
-        public string PersonId
-        {
-            get => personId;
-            set
-            {
-                personId = value;
-                LoadItem();
-            }
-        }
-
-        private async void LoadItem()
-        {
-            var person = await DataStore.GetAsync(personId);
-
-            Name = person.Name;
-            Surname = person.Surname;
-            Color = person.Color;
         }
     }
 }

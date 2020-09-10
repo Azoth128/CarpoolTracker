@@ -10,9 +10,9 @@
         <Entry Text="{Binding Name}" />
 
         <Label Text="Distance" FontSize="Small" />
-        <StackLayout Orientation="Horizontal" >
-            <Entry Text="{Binding Distance}" Keyboard="Numeric" WidthRequest="50" HorizontalTextAlignment="End"/>
-            <Label Margin="0, 8, 0, 0" Text="km" FontSize="Medium"/>
+        <StackLayout Orientation="Horizontal">
+            <Entry Text="{Binding Distance}" Keyboard="Numeric" WidthRequest="50" HorizontalTextAlignment="End" />
+            <Label Margin="0, 8, 0, 0" Text="km" FontSize="Medium" />
         </StackLayout>
 
         <StackLayout Margin="0, 25, 0, 0" Orientation="Horizontal">

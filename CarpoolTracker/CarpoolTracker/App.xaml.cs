@@ -18,7 +18,7 @@ namespace CarpoolTracker
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        protected override void OnResume()
         {
         }
 
@@ -26,7 +26,7 @@ namespace CarpoolTracker
         {
         }
 
-        protected override void OnResume()
+        protected override void OnStart()
         {
         }
     }

@@ -9,17 +9,15 @@ namespace CarpoolTracker.ViewModels
 {
     public class BaseViewModel<T> : INotifyPropertyChanged
     {
-        public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
-
         private bool isBusy = false;
+        private string title = string.Empty;
+        public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
 
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
-
-        private string title = string.Empty;
 
         public string Title
         {

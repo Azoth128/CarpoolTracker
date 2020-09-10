@@ -7,10 +7,21 @@ namespace CarpoolTracker.ViewModels
     [QueryProperty(nameof(TrackId), nameof(TrackId))]
     public class TrackDetailViewModel : BaseViewModel<Track>
     {
+        private int distance;
+        private string name;
         private string trackId;
 
-        private string name;
-        private int distance;
+        public TrackDetailViewModel()
+        {
+            Title = "Track";
+            EditTrackCommand = new Command(OnEditTrack);
+        }
+
+        public int Distance { get => distance; set => SetProperty(ref distance, value); }
+
+        public Command EditTrackCommand { get; }
+
+        public string Name { get => name; set => SetProperty(ref name, value); }
 
         public string TrackId
         {
@@ -20,22 +31,6 @@ namespace CarpoolTracker.ViewModels
                 trackId = value;
                 LoadTrack();
             }
-        }
-
-        public string Name { get => name; set => SetProperty(ref name, value); }
-        public int Distance { get => distance; set => SetProperty(ref distance, value); }
-
-        public Command EditTrackCommand { get; }
-
-        public TrackDetailViewModel()
-        {
-            Title = "Track";
-            EditTrackCommand = new Command(OnEditTrack);
-        }
-
-        private void OnEditTrack(object obj)
-        {
-            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}?{nameof(TrackEditViewModel.TrackId)}={TrackId}");
         }
 
         private async void LoadTrack()
@@ -52,6 +47,11 @@ namespace CarpoolTracker.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private void OnEditTrack(object obj)
+        {
+            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}?{nameof(TrackEditViewModel.TrackId)}={TrackId}");
         }
     }
 }

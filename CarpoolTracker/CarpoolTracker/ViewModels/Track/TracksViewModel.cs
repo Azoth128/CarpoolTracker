@@ -7,12 +7,6 @@ namespace CarpoolTracker.ViewModels
 {
     public class TracksViewModel : BaseViewModel<Track>
     {
-        public ObservableCollection<Track> Tracks { get; }
-
-        public Command LoadTracksCommand { get; }
-        public Command<Track> TrackTappedCommand { get; }
-        public Command NewTrackCommand { get; }
-
         public TracksViewModel()
         {
             Title = "Traks";
@@ -23,20 +17,10 @@ namespace CarpoolTracker.ViewModels
             NewTrackCommand = new Command(OnNewTrack);
         }
 
-        public void OnAppearing()
-        {
-            LoadTracks();
-        }
-
-        private void OnNewTrack(object obj)
-        {
-            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}");
-        }
-
-        private void OnTrackTapped(Track track)
-        {
-            Shell.Current.GoToAsync($"{nameof(TrackDetailPage)}?{nameof(TrackDetailViewModel.TrackId)}={track.Id}");
-        }
+        public Command LoadTracksCommand { get; }
+        public Command NewTrackCommand { get; }
+        public ObservableCollection<Track> Tracks { get; }
+        public Command<Track> TrackTappedCommand { get; }
 
         private async void LoadTracks()
         {
@@ -54,6 +38,21 @@ namespace CarpoolTracker.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private void OnNewTrack(object obj)
+        {
+            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}");
+        }
+
+        private void OnTrackTapped(Track track)
+        {
+            Shell.Current.GoToAsync($"{nameof(TrackDetailPage)}?{nameof(TrackDetailViewModel.TrackId)}={track.Id}");
+        }
+
+        public void OnAppearing()
+        {
+            LoadTracks();
         }
     }
 }

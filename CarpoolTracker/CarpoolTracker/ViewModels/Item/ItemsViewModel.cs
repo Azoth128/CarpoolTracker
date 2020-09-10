@@ -12,11 +12,6 @@ namespace CarpoolTracker.ViewModels
     {
         private Item _selectedItem;
 
-        public ObservableCollection<Item> Items { get; }
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
-
         public ItemsViewModel()
         {
             Title = "Browse";
@@ -26,6 +21,21 @@ namespace CarpoolTracker.ViewModels
             ItemTapped = new Command<Item>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+        }
+
+        public Command AddItemCommand { get; }
+        public ObservableCollection<Item> Items { get; }
+        public Command<Item> ItemTapped { get; }
+        public Command LoadItemsCommand { get; }
+
+        public Item SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                SetProperty(ref _selectedItem, value);
+                OnItemSelected(value);
+            }
         }
 
         private async Task ExecuteLoadItemsCommand()
@@ -51,22 +61,6 @@ namespace CarpoolTracker.ViewModels
             }
         }
 
-        public void OnAppearing()
-        {
-            IsBusy = true;
-            SelectedItem = null;
-        }
-
-        public Item SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
-            }
-        }
-
         private async void OnAddItem(object obj)
         {
             await Shell.Current.GoToAsync(nameof(NewItemPage));
@@ -79,6 +73,12 @@ namespace CarpoolTracker.ViewModels
 
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+        }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
+            SelectedItem = null;
         }
     }
 }

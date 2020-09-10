@@ -7,12 +7,23 @@ namespace CarpoolTracker.ViewModels
     [QueryProperty(nameof(TrackId), nameof(TrackId))]
     public class TrackEditViewModel : BaseViewModel<Track>
     {
-        private string name;
         private int distance;
+        private string name;
         private string trackid;
 
-        public string Name { get => name; set => SetProperty(ref name, value); }
+        public TrackEditViewModel()
+        {
+            Title = "Track";
+
+            SaveCommand = new Command(OnSave);
+            CancelCommand = new Command(OnCancel);
+        }
+
+        private bool IsInsert { get => TrackId == null || TrackId == ""; }
+        public Command CancelCommand { get; }
         public int Distance { get => distance; set => SetProperty(ref distance, value); }
+        public string Name { get => name; set => SetProperty(ref name, value); }
+        public Command SaveCommand { get; }
 
         public string TrackId
         {
@@ -24,17 +35,27 @@ namespace CarpoolTracker.ViewModels
             }
         }
 
-        private bool IsInsert { get => TrackId == null || TrackId == ""; }
-
-        public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
-
-        public TrackEditViewModel()
+        private void GoBack()
         {
-            Title = "Track";
+            if (IsInsert)
+                Shell.Current.GoToAsync($"..");
+            else
+                Shell.Current.GoToAsync($"..?{nameof(TrackDetailViewModel.TrackId)}={TrackId}");
+        }
 
-            SaveCommand = new Command(OnSave);
-            CancelCommand = new Command(OnCancel);
+        private async void LoadTrack()
+        {
+            IsBusy = true;
+            try
+            {
+                var track = await DataStore.GetAsync(TrackId);
+                Name = track.Name;
+                Distance = track.Distance;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private void OnCancel(object obj)
@@ -59,29 +80,6 @@ namespace CarpoolTracker.ViewModels
                 await DataStore.UpdateAsync(track);
 
             GoBack();
-        }
-
-        private void GoBack()
-        {
-            if (IsInsert)
-                Shell.Current.GoToAsync($"..");
-            else
-                Shell.Current.GoToAsync($"..?{nameof(TrackDetailViewModel.TrackId)}={TrackId}");
-        }
-
-        private async void LoadTrack()
-        {
-            IsBusy = true;
-            try
-            {
-                var track = await DataStore.GetAsync(TrackId);
-                Name = track.Name;
-                Distance = track.Distance;
-            }
-            finally
-            {
-                IsBusy = false;
-            }
         }
     }
 }

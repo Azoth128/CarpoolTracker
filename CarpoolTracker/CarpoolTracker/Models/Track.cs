@@ -5,9 +5,9 @@ namespace CarpoolTracker.Models
 {
     public class Track : IDataModel, IHasDefaults<Track>
     {
+        public int Distance { get; set; }
         public string Id { get; set; }
         public string Name { get; set; }
-        public int Distance { get; set; }
 
         public List<Track> DefaultValues()
         {

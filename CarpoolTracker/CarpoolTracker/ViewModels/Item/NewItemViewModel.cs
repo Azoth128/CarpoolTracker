@@ -6,8 +6,8 @@ namespace CarpoolTracker.ViewModels
 {
     public class NewItemViewModel : BaseViewModel<Item>
     {
-        private string text;
         private string description;
+        private string text;
 
         public NewItemViewModel()
         {
@@ -17,17 +17,7 @@ namespace CarpoolTracker.ViewModels
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
 
-        private bool ValidateSave()
-        {
-            return !(string.IsNullOrWhiteSpace(text)
-                || string.IsNullOrWhiteSpace(description));
-        }
-
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
+        public Command CancelCommand { get; }
 
         public string Description
         {
@@ -36,7 +26,12 @@ namespace CarpoolTracker.ViewModels
         }
 
         public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
+
+        public string Text
+        {
+            get => text;
+            set => SetProperty(ref text, value);
+        }
 
         private async void OnCancel()
         {
@@ -57,6 +52,12 @@ namespace CarpoolTracker.ViewModels
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
+        }
+
+        private bool ValidateSave()
+        {
+            return !(string.IsNullOrWhiteSpace(text)
+                || string.IsNullOrWhiteSpace(description));
         }
     }
 }

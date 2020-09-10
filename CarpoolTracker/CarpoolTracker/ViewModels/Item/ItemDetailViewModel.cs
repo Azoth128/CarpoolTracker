@@ -8,22 +8,17 @@ namespace CarpoolTracker.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel<Item>
     {
+        private string description;
         private string itemId;
         private string text;
-        private string description;
-        public string Id { get; set; }
-
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
 
         public string Description
         {
             get => description;
             set => SetProperty(ref description, value);
         }
+
+        public string Id { get; set; }
 
         public string ItemId
         {
@@ -36,6 +31,12 @@ namespace CarpoolTracker.ViewModels
                 itemId = value;
                 LoadItemId(value);
             }
+        }
+
+        public string Text
+        {
+            get => text;
+            set => SetProperty(ref text, value);
         }
 
         public async void LoadItemId(string itemId)

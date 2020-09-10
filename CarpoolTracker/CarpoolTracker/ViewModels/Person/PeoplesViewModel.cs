@@ -10,12 +10,6 @@ namespace CarpoolTracker.ViewModels
 {
     public class PeoplesViewModel : BaseViewModel<Person>
     {
-        public ObservableCollection<Person> Items { get; }
-
-        public Command LoadItemsCommand { get; }
-        public Command<Person> ItemTappedCommand { get; }
-        public Command NewCommand { get; }
-
         public PeoplesViewModel()
         {
             Title = "People";
@@ -25,14 +19,15 @@ namespace CarpoolTracker.ViewModels
             NewCommand = new Command(ExecuteNewCommand);
         }
 
-        private async void ExecuteNewCommand(object obj)
-        {
-            await Shell.Current.GoToAsync($"{nameof(PersonEditPage)}");
-        }
+        public ObservableCollection<Person> Items { get; }
 
-        public async void OnAppearing()
+        public Command<Person> ItemTappedCommand { get; }
+        public Command LoadItemsCommand { get; }
+        public Command NewCommand { get; }
+
+        private async void ExecuteItemTappedCommand(Person person)
         {
-            await ExecuteLoadItemsCommand();
+            await Shell.Current.GoToAsync($"{nameof(PersonDetailPage)}?{nameof(PersonDetailViewModel.PersonId)}={person.Id}");
         }
 
         private async Task ExecuteLoadItemsCommand()
@@ -58,9 +53,9 @@ namespace CarpoolTracker.ViewModels
             }
         }
 
-        private async void ExecuteItemTappedCommand(Person person)
+        private async void ExecuteNewCommand(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(PersonDetailPage)}?{nameof(PersonDetailViewModel.PersonId)}={person.Id}");
+            await Shell.Current.GoToAsync($"{nameof(PersonEditPage)}");
         }
 
         private void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -72,6 +67,11 @@ namespace CarpoolTracker.ViewModels
 
             //Deselect Item
             //((ListView)sender).SelectedItem = null;
+        }
+
+        public async void OnAppearing()
+        {
+            await ExecuteLoadItemsCommand();
         }
     }
 }

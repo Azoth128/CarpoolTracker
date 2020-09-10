@@ -29,15 +29,6 @@ namespace CarpoolTracker.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateAsync(T t)
-        {
-            var oldItem = items.Where(arg => arg.Id == t.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(t);
-
-            return await Task.FromResult(true);
-        }
-
         public async Task<bool> DeleteAsync(string id)
         {
             var oldItem = items.Where(arg => arg.Id == id).FirstOrDefault();
@@ -54,6 +45,15 @@ namespace CarpoolTracker.Services
         public async Task<IEnumerable<T>> GetListAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
+        }
+
+        public async Task<bool> UpdateAsync(T t)
+        {
+            var oldItem = items.Where(arg => arg.Id == t.Id).FirstOrDefault();
+            items.Remove(oldItem);
+            items.Add(t);
+
+            return await Task.FromResult(true);
         }
     }
 }
