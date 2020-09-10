@@ -12,22 +12,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\Track\TrackEditPage.xaml.cs">
+	  <Compile Update="Views\People\PeoplePage.xaml.cs">
+	    <DependentUpon>PeoplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Tracks\TrackEditPage.xaml.cs">
 	    <DependentUpon>TrackEditPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Views\Person\PersonEditPage.xaml">
+	  <EmbeddedResource Update="Views\People\PersonEditPage.xaml">
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Views\Track\TrackEditPage.xaml">
+	  <EmbeddedResource Update="Views\Tracks\TrackEditPage.xaml">
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Views\Track\TrackDetailPage.xaml">
+	  <EmbeddedResource Update="Views\Tracks\TrackDetailPage.xaml">
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Views\Track\TracksPage.xaml">
+	  <EmbeddedResource Update="Views\Tracks\TracksPage.xaml">
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
 	</ItemGroup>

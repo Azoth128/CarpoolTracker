@@ -1,4 +1,7 @@
 ﻿using CarpoolTracker.Views;
+using CarpoolTracker.Views.Items;
+using CarpoolTracker.Views.People;
+using CarpoolTracker.Views.Tracks;
 using System;
 using Xamarin.Forms;
 

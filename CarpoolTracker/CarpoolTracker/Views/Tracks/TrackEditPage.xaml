@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarpoolTracker.Views.Tracks.TrackEditPage"
+             xmlns:viewModels="clr-namespace:CarpoolTracker.ViewModels.Tracks"
+             x:DataType="viewModels:TrackEditViewModel">
+
+    <StackLayout Spacing="5" Padding="15">
+        <Label Text="Name" FontSize="Small" />
+        <Entry Text="{Binding Name}" />
+
+        <Label Text="Distance" FontSize="Small" />
+        <StackLayout Orientation="Horizontal">
+            <Entry Text="{Binding Distance}" Keyboard="Numeric" WidthRequest="50" HorizontalTextAlignment="End" />
+            <Label Margin="0, 8, 0, 0" Text="km" FontSize="Medium" />
+        </StackLayout>
+
+        <StackLayout Margin="0, 25, 0, 0" Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
