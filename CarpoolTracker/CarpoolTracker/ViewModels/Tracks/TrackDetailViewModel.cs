@@ -51,7 +51,7 @@ namespace CarpoolTracker.ViewModels.Tracks
 
         private void OnEditTrack(object obj)
         {
-            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}?{nameof(TrackEditViewModel.TrackId)}={TrackId}");
+            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}?{nameof(TrackEditViewModel.ItemId)}={TrackId}");
         }
     }
 }

@@ -5,13 +5,14 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:CarpoolTracker.ViewModels.People"
              xmlns:model="clr-namespace:CarpoolTracker.Models"
-             x:Name="BrowseItemsPage">
+             x:Name="BrowseItemsPage"
+             x:DataType="local:PeopleViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New" Command="{Binding NewCommand}" />
+        <ToolbarItem Text="New" Command="{Binding NewItemCommand}" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView x:DataType="local:PeoplesViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <RefreshView  Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 SelectionMode="None">
@@ -31,7 +32,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:PeoplesViewModel}}, Path=ItemTappedCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:PeopleViewModel}}, Path=ItemTappedCommand}"
                                 CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>

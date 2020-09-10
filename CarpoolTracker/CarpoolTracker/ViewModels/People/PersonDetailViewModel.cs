@@ -35,7 +35,7 @@ namespace CarpoolTracker.ViewModels.People
 
         private async void ExecuteEditPersonCommand(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(PersonEditPage)}?{nameof(PersonEditViewModel.PersonId)}={personId}");
+            await Shell.Current.GoToAsync($"{nameof(PersonEditPage)}?{nameof(PersonEditViewModel.ItemId)}={personId}");
         }
 
         private async void LoadItem()

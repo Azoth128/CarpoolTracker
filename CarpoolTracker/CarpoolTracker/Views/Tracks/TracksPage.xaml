@@ -8,11 +8,11 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New" Command="{Binding NewTrackCommand}" />
+        <ToolbarItem Text="New" Command="{Binding NewItemCommand}" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView Command="{Binding LoadTracksCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView ItemsSource="{Binding Tracks}" SelectionMode="None">
+    <RefreshView Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView ItemsSource="{Binding Items}" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Track">
                     <StackLayout Padding="15">
@@ -24,7 +24,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TracksViewModel}}, Path=TrackTappedCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TracksViewModel}}, Path=ItemTappedCommand}"
                                 CommandParameter="{Binding .}" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>

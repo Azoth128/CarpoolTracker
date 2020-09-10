@@ -16,9 +16,11 @@ namespace CarpoolTracker.Views.People
             BindingContext = viewModel = new PersonEditViewModel();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Nicht verwendete Parameter entfernen", Justification = "This is an Event and can't have other Parameters")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Nicht verwendete private Member entfernen", Justification = "Used in XAML")]
         private void ColorPicker_PickedColorChanged(object sender, Color e)
         {
-            viewModel.ExecuteColorChangedCommand(sender, e);
+            viewModel.ExecuteColorChangedCommand(e);
         }
     }
 }
