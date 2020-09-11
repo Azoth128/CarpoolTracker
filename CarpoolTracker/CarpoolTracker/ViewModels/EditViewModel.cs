@@ -4,13 +4,11 @@ using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
 {
-    public abstract class EditViewModel<T> : BaseViewModel<T> where T : IDataModel, new()
+    public abstract class EditViewModel<T> : DetailViewModel<T> where T : class, IDataModel, new()
     {
-        private string itemId;
-
         public EditViewModel()
         {
-            SaveCommand = new Command(OnSaveInternal, CanSave);
+            SaveCommand = new Command(OnSaveInternal, _ => CanSave());
             CancelCommand = new Command(OnCancel);
             PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
         }
@@ -19,23 +17,7 @@ namespace CarpoolTracker.ViewModels
 
         public Command CancelCommand { get; }
 
-        public string ItemId { get => itemId; set { itemId = value; LoadItem(); } }
-
         public Command SaveCommand { get; }
-
-        private async void LoadItem()
-        {
-            IsBusy = true;
-            try
-            {
-                var item = await DataStore.GetAsync(ItemId);
-                OnItemLoaded(item);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
 
         private async void OnSaveInternal(object obj)
         {
@@ -55,15 +37,11 @@ namespace CarpoolTracker.ViewModels
             OnAfterSave();
         }
 
-        protected abstract bool CanSave(object arg);
+        protected abstract bool CanSave();
 
         protected abstract void OnAfterSave();
 
-        protected abstract void OnCancel(object obj);
-
-        protected virtual void OnItemLoaded(T item)
-        {
-        }
+        protected abstract void OnCancel();
 
         protected abstract void OnSave(T item);
     }

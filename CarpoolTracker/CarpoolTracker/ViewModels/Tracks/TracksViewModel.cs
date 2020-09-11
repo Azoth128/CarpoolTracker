@@ -14,7 +14,7 @@ namespace CarpoolTracker.ViewModels.Tracks
         protected override void OnItemTappedAsync(Track track)
         {
             base.OnItemTappedAsync(track);
-            Shell.Current.GoToAsync($"{nameof(TrackDetailPage)}?{nameof(TrackDetailViewModel.TrackId)}={track.Id}");
+            Shell.Current.GoToAsync($"{nameof(TrackDetailPage)}?{nameof(TrackDetailViewModel.ItemId)}={track.Id}");
         }
 
         protected override void OnNewItem(object obj)

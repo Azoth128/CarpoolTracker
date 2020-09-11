@@ -38,6 +38,10 @@ namespace CarpoolTracker.ViewModels
             return true;
         }
 
+        public virtual void OnAppearing()
+        {
+        }
+
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;

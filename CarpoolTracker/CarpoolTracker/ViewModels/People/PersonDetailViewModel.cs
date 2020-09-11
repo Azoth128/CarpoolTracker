@@ -1,15 +1,14 @@
 ﻿using CarpoolTracker.Models;
 using CarpoolTracker.Views.People;
+using System;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels.People
 {
-    [QueryProperty(nameof(PersonId), nameof(PersonId))]
-    public class PersonDetailViewModel : BaseViewModel<Person>
+    public class PersonDetailViewModel : DetailViewModel<Person>
     {
         private Color color;
         private string name;
-        private string personId;
         private string surname;
 
         public PersonDetailViewModel()
@@ -21,30 +20,18 @@ namespace CarpoolTracker.ViewModels.People
         public Command EditPersonCommand { get; set; }
         public string Name { get => name; set => SetProperty(ref name, value); }
 
-        public string PersonId
-        {
-            get => personId;
-            set
-            {
-                personId = value;
-                LoadItem();
-            }
-        }
-
         public string Surname { get => surname; set => SetProperty(ref surname, value); }
 
         private async void ExecuteEditPersonCommand(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(PersonEditPage)}?{nameof(PersonEditViewModel.ItemId)}={personId}");
+            await Shell.Current.GoToAsync($"{nameof(PersonEditPage)}?{nameof(ItemId)}={ItemId}");
         }
 
-        private async void LoadItem()
+        protected override void OnItemLoaded(Person item)
         {
-            var person = await DataStore.GetAsync(personId);
-
-            Name = person.Name;
-            Surname = person.Surname;
-            Color = person.Color;
+            Name = item.Name;
+            Surname = item.Surname;
+            Color = item.Color;
         }
     }
 }

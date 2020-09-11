@@ -4,12 +4,10 @@ using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels.Tracks
 {
-    [QueryProperty(nameof(TrackId), nameof(TrackId))]
-    public class TrackDetailViewModel : BaseViewModel<Track>
+    public class TrackDetailViewModel : DetailViewModel<Track>
     {
         private int distance;
         private string name;
-        private string trackId;
 
         public TrackDetailViewModel()
         {
@@ -23,35 +21,15 @@ namespace CarpoolTracker.ViewModels.Tracks
 
         public string Name { get => name; set => SetProperty(ref name, value); }
 
-        public string TrackId
-        {
-            get => trackId;
-            set
-            {
-                trackId = value;
-                LoadTrack();
-            }
-        }
-
-        private async void LoadTrack()
-        {
-            IsBusy = true;
-            try
-            {
-                var track = await DataStore.GetAsync(TrackId);
-
-                Name = track.Name;
-                Distance = track.Distance;
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
         private void OnEditTrack(object obj)
         {
-            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}?{nameof(TrackEditViewModel.ItemId)}={TrackId}");
+            Shell.Current.GoToAsync($"{nameof(TrackEditPage)}?{nameof(ItemId)}={ItemId}");
+        }
+
+        protected override void OnItemLoaded(Track item)
+        {
+            Name = item.Name;
+            Distance = item.Distance;
         }
     }
 }

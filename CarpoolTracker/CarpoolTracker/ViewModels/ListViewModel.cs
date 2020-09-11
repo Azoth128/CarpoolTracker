@@ -54,8 +54,9 @@ namespace CarpoolTracker.ViewModels
         {
         }
 
-        public virtual void OnAppearing()
+        public override void OnAppearing()
         {
+            base.OnAppearing();
             LoadItems();
         }
     }

@@ -1,10 +1,10 @@
 ﻿using CarpoolTracker.Models;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels.People
 {
-    [Xamarin.Forms.QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class PersonEditViewModel : EditViewModel<Person>
     {
         private System.Drawing.Color color;
@@ -22,31 +22,14 @@ namespace CarpoolTracker.ViewModels.People
 
         public string Surname { get => surname; set => SetProperty(ref surname, value); }
 
-        protected override bool CanSave(object arg)
-        {
-            return !(Name == null) || Name != "";
-        }
+        protected override bool CanSave() => !(Name == null) || Name != "";
 
-        protected async override void OnAfterSave()
-        {
-            if (IsInsert)
-                await Shell.Current.GoToAsync($"..");
-            else
-                await Shell.Current.GoToAsync($"..?{nameof(PersonDetailViewModel.PersonId)}={ItemId}");
-        }
+        protected async override void OnAfterSave() => await Shell.Current.Navigation.PopAsync();
 
-        protected async override void OnCancel(object obj)
-        {
-            if (IsInsert)
-                await Shell.Current.GoToAsync($"..");
-            else
-                await Shell.Current.GoToAsync($"..?{nameof(PersonDetailViewModel.PersonId)}={ItemId}");
-        }
+        protected async override void OnCancel() => await Shell.Current.Navigation.PopAsync();
 
         protected override void OnItemLoaded(Person item)
         {
-            base.OnItemLoaded(item);
-
             Name = item.Name;
             Surname = item.Surname;
             Color = item.Color;

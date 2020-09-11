@@ -7,11 +7,19 @@ namespace CarpoolTracker.Views.People
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PersonDetailPage : ContentPage
     {
+        private readonly PersonDetailViewModel viewModel;
+
         public PersonDetailPage()
         {
             InitializeComponent();
 
-            BindingContext = new PersonDetailViewModel();
+            BindingContext = viewModel = new PersonDetailViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.OnAppearing();
         }
     }
 }
