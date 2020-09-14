@@ -2,7 +2,7 @@
 
 namespace CarpoolTracker.Models
 {
-    public interface IHasDefaults<T>
+    public interface IHasTestValues<T>
     {
         List<T> DefaultValues();
     }

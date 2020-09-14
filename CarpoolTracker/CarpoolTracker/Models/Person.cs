@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace CarpoolTracker.Models
 {
-    public class Person : IDataModel, IHasDefaults<Person>
+    public class Person : IDataModel, IHasTestValues<Person>
     {
         public Color Color { get; set; }
         public string Id { get; set; }

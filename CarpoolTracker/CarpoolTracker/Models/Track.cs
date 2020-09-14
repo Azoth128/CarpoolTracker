@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CarpoolTracker.Models
 {
-    public class Track : IDataModel, IHasDefaults<Track>
+    public class Track : IDataModel, IHasTestValues<Track>
     {
         public int Distance { get; set; }
         public string Id { get; set; }

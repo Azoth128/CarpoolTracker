@@ -15,10 +15,10 @@ namespace CarpoolTracker.Services
             if (t.GetType().GetInterfaces().Any(x =>
             {
                 return x.IsGenericType
-                    && x.GetGenericTypeDefinition() == typeof(IHasDefaults<>);
+                    && x.GetGenericTypeDefinition() == typeof(IHasTestValues<>);
             }))
             {
-                items = (t as IHasDefaults<T>).DefaultValues();
+                items = (t as IHasTestValues<T>).DefaultValues();
             };
         }
 
