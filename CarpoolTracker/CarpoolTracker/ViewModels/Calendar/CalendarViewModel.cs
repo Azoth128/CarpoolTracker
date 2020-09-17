@@ -1,4 +1,6 @@
-﻿using CarpoolTracker.Models;
+﻿using CarpoolTracker.Helper;
+using CarpoolTracker.Models;
+using System.Drawing;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace CarpoolTracker.ViewModels.Calendar
@@ -26,7 +28,8 @@ namespace CarpoolTracker.ViewModels.Calendar
                 }
                 else
                 {
-                    Events.Add(drive.Date, new DayEventCollection<Drive>(drive.Driver.Color, null)
+                    var color = drive.Driver.Color;
+                    Events.Add(drive.Date, new DayEventCollection<Drive>(color, color.Lerp(Color.Black, 0.35f), Color.Black, Color.White)
                     {
                         drive
                     });

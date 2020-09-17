@@ -11,6 +11,9 @@ namespace CarpoolTracker.ViewModels
     {
         private bool isBusy = false;
         private string title = string.Empty;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
 
         public bool IsBusy
@@ -25,7 +28,12 @@ namespace CarpoolTracker.ViewModels
             set { SetProperty(ref title, value); }
         }
 
-        protected bool SetProperty<K>(ref K backingStore, K value,
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        protected bool SetProperty<K>(
+                    ref K backingStore,
+            K value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
@@ -41,20 +49,5 @@ namespace CarpoolTracker.ViewModels
         public virtual void OnAppearing()
         {
         }
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion INotifyPropertyChanged
     }
 }

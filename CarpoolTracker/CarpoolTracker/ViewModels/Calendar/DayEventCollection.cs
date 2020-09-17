@@ -16,6 +16,16 @@ namespace CarpoolTracker.ViewModels.Calendar
             EventIndicatorSelectedColor = eventIndicatorSelectedColor;
         }
 
+        public DayEventCollection(
+            Color? eventIndicatorColor,
+            Color? eventIndicatorSelectedColor,
+            Color? eventIndicatorTextColor,
+            Color? eventIndicatorSelectedTextColor) : this(eventIndicatorColor, eventIndicatorSelectedColor)
+        {
+            EventIndicatorTextColor = eventIndicatorTextColor;
+            EventIndicatorSelectedTextColor = eventIndicatorSelectedTextColor;
+        }
+
         public DayEventCollection(IEnumerable<T> collection) : base(collection)
         {
         }

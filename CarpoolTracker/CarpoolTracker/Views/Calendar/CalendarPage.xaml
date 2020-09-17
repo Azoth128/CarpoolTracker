@@ -2,13 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarpoolTracker.Views.Calendar.CalendarPage"
-             xmlns:calendar="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+             xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+             xmlns:calendar="clr-namespace:CarpoolTracker.Views.Calendar"
              xmlns:viewModel="clr-namespace:CarpoolTracker.ViewModels.Calendar"
              x:DataType="viewModel:CalendarViewModel"
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <calendar:Calendar Events="{Binding Events}" />
+            <plugin:Calendar EventIndicatorType="Background" Events="{Binding Events}">
+                <plugin:Calendar.HeaderSectionTemplate>
+                    <calendar:CalendarHeader />
+                </plugin:Calendar.HeaderSectionTemplate>
+            </plugin:Calendar>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

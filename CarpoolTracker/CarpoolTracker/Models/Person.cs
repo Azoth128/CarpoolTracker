@@ -16,7 +16,7 @@ namespace CarpoolTracker.Models
             return new List<Person>()
             {
                 new Person() {Id = Guid.NewGuid().ToString(), Name = "Max", Surname = "Mustermann", Color = Color.Beige},
-                new Person() {Id = Guid.NewGuid().ToString(), Name = "Jana", Surname = "Ipsum", Color = Color.Blue}
+                new Person() {Id = Guid.NewGuid().ToString(), Name = "Jana", Surname = "Ipsum", Color = Color.LightBlue}
             };
         }
     }
