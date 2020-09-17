@@ -9,10 +9,32 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <plugin:Calendar EventIndicatorType="Background" Events="{Binding Events}">
+            <plugin:Calendar
+                EventIndicatorType="Background"
+                Events="{Binding Events}"
+                DayTappedCommand="{Binding DayTappedCommand}">
+
                 <plugin:Calendar.HeaderSectionTemplate>
                     <calendar:CalendarHeader />
                 </plugin:Calendar.HeaderSectionTemplate>
+                <plugin:Calendar.FooterSectionTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="20">
+                            <Label
+                                x:DataType="plugin:Calendar"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="{Binding SelectedDateText}"
+                                TextColor="{Binding SelectedDateColor}"
+                                VerticalOptions="CenterAndExpand"
+                                VerticalTextAlignment="Center" />
+                            <StackLayout x:DataType="viewModel:CalendarViewModel" Margin="0, 20, 0, 0"  Orientation="Horizontal">
+                                <Button Text="Set Driver" IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=CanSetDriver}"  HorizontalOptions="FillAndExpand" />
+                                <Button Text="Clear" IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=CanRemoveDriver}" HorizontalOptions="FillAndExpand" />                                
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </plugin:Calendar.FooterSectionTemplate>
             </plugin:Calendar>
         </StackLayout>
     </ContentPage.Content>
