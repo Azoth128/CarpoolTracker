@@ -29,8 +29,14 @@
                                 VerticalOptions="CenterAndExpand"
                                 VerticalTextAlignment="Center" />
                             <StackLayout x:DataType="viewModel:CalendarViewModel" Margin="0, 20, 0, 0"  Orientation="Horizontal">
-                                <Button Text="Set Driver" IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=CanSetDriver}"  HorizontalOptions="FillAndExpand" />
-                                <Button Text="Clear" IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=CanRemoveDriver}" HorizontalOptions="FillAndExpand" />                                
+                                <Button Text="Set Driver"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=SetDriverCommand}"
+                                        IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=CanSetDriver}"
+                                        HorizontalOptions="FillAndExpand" />
+                                <Button Text="Clear"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=RemoveDriverCommand}"
+                                        IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CalendarViewModel}}, Path=CanRemoveDriver}"
+                                        HorizontalOptions="FillAndExpand" />
                             </StackLayout>
                         </StackLayout>
                     </DataTemplate>

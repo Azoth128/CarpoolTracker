@@ -1,7 +1,12 @@
 ﻿using CarpoolTracker.Helper;
 using CarpoolTracker.Models;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
+using Xamarin.Plugin.Calendar.Interfaces;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace CarpoolTracker.ViewModels.Calendar
@@ -20,14 +25,20 @@ namespace CarpoolTracker.ViewModels.Calendar
             LoadEventList();
 
             DayTappedCommand = new Command<DateTime>(date => Selected = date);
+            RemoveDriverCommand = new Command(OnRemoveDriver);
+            SetDriverCommand = new Command(OnSetDiver);
             Selected = DateTime.Today;
         }
 
         public bool CanRemoveDriver { get => canRemoveDriver; set => SetProperty(ref canRemoveDriver, value); }
+
         public bool CanSetDriver { get => canSetDriver; set => SetProperty(ref canSetDriver, value); }
 
         public Command DayTappedCommand { get; }
+
         public EventCollection Events { get; }
+
+        public Command RemoveDriverCommand { get; }
 
         public DateTime Selected
         {
@@ -35,28 +46,44 @@ namespace CarpoolTracker.ViewModels.Calendar
             private set
             {
                 selected = value;
-                CanRemoveDriver = Events.ContainsKey(Selected);
+                CheckCanRemoveDriver();
             }
         }
+
+        private void CheckCanRemoveDriver() => CanRemoveDriver = Events.ContainsKey(Selected);
+
+        public Command SetDriverCommand { get; }
 
         private void LoadEventList()
         {
             Events.Clear();
             foreach (var drive in DataStore.GetListAsync().Result)
             {
-                if (Events.ContainsKey(drive.Date))
-                {
-                    ((DayEventCollection<Drive>)Events[drive.Date]).Add(drive);
-                }
-                else
-                {
-                    var color = drive.Driver.Color;
-                    Events.Add(drive.Date, new DayEventCollection<Drive>(color, color.Lerp(System.Drawing.Color.Black, 0.35f), System.Drawing.Color.Black, System.Drawing.Color.White)
-                    {
-                        drive
-                    });
-                }
+                var color = drive.Driver.Color;
+                Events.Add(drive.Date, new DriveEvent(
+                    drive,
+                    color,
+                    color.Lerp(System.Drawing.Color.Black, 0.35f),
+                    System.Drawing.Color.Black,
+                    System.Drawing.Color.White));
             }
+        }
+
+        private async void OnRemoveDriver(object obj)
+        {
+            var drives = await DataStore.GetListAsync();
+            drives.ToList().ForEach(async drive =>
+            {
+                if (drive.Date.Date == Selected.Date)
+                    await DataStore.DeleteAsync(drive.Id);
+            });
+            LoadEventList();
+            CheckCanRemoveDriver();
+        }
+
+        private void OnSetDiver(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         public override void OnAppearing()
