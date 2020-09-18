@@ -1,12 +1,9 @@
 ﻿using CarpoolTracker.Helper;
 using CarpoolTracker.Models;
+using CarpoolTracker.Views.Calendar;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using Xamarin.Plugin.Calendar.Interfaces;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace CarpoolTracker.ViewModels.Calendar
@@ -50,9 +47,9 @@ namespace CarpoolTracker.ViewModels.Calendar
             }
         }
 
-        private void CheckCanRemoveDriver() => CanRemoveDriver = Events.ContainsKey(Selected);
-
         public Command SetDriverCommand { get; }
+
+        private void CheckCanRemoveDriver() => CanRemoveDriver = Events.ContainsKey(Selected);
 
         private void LoadEventList()
         {
@@ -83,7 +80,7 @@ namespace CarpoolTracker.ViewModels.Calendar
 
         private void OnSetDiver(object obj)
         {
-            throw new NotImplementedException();
+            Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new SelectPersonPopupPage());
         }
 
         public override void OnAppearing()
