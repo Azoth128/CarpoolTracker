@@ -1,7 +1,9 @@
 ﻿using CarpoolTracker.Helper;
 using CarpoolTracker.Models;
+using CarpoolTracker.Services;
 using CarpoolTracker.Views.Calendar;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Plugin.Calendar.Models;
@@ -10,15 +12,24 @@ namespace CarpoolTracker.ViewModels.Calendar
 {
     public class CalendarViewModel : BaseViewModel<Drive>
     {
+        private readonly DriveDefinition driveDefinition;
         private bool canRemoveDriver = false;
         private bool canSetDriver = true;
+        private List<Drive> driveList;
         private DateTime selected;
 
-        public CalendarViewModel()
+        public CalendarViewModel(/*DriveDefinition driveDefinition*/)
         {
+            //driveDefinition = driveDefinition ?? throw new ArgumentNullException();
+            //TODO: change to Constructor-Parameter
+            driveDefinition = DependencyService.Get<IDataStore<DriveDefinition>>()
+                .GetListAsync().Result
+                .FirstOrDefault() ?? throw new ArgumentNullException();
+
             Title = "Calendar";
 
             Events = new EventCollection();
+            Refresh();
             LoadEventList();
 
             DayTappedCommand = new Command<DateTime>(date => Selected = date);
@@ -51,10 +62,33 @@ namespace CarpoolTracker.ViewModels.Calendar
 
         private void CheckCanRemoveDriver() => CanRemoveDriver = Events.ContainsKey(Selected);
 
+        private async void DriverSet(Person person)
+        {
+            if (person is null)
+                throw new ArgumentNullException();
+
+            driveList.ForEach(async drive =>
+            {
+                if (drive.Definition == driveDefinition && drive.Date.Date == selected.Date)
+                    await DataStore.DeleteAsync(drive.Id);
+            });
+
+            await DataStore.AddAsync(new Drive()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Date = selected,
+                Definition = driveDefinition,
+                Driver = person
+            });
+
+            Refresh();
+            LoadEventList();
+        }
+
         private void LoadEventList()
         {
             Events.Clear();
-            foreach (var drive in DataStore.GetListAsync().Result)
+            foreach (var drive in driveList.Where(drive => drive.Definition == driveDefinition))
             {
                 var color = drive.Driver.Color;
                 Events.Add(drive.Date, new DriveEvent(
@@ -66,21 +100,26 @@ namespace CarpoolTracker.ViewModels.Calendar
             }
         }
 
-        private async void OnRemoveDriver(object obj)
+        private void OnRemoveDriver(object obj)
         {
-            var drives = await DataStore.GetListAsync();
-            drives.ToList().ForEach(async drive =>
+            driveList.ForEach(async drive =>
             {
-                if (drive.Date.Date == Selected.Date)
+                if (drive.Definition == driveDefinition && drive.Date.Date == Selected.Date)
                     await DataStore.DeleteAsync(drive.Id);
             });
+            Refresh();
             LoadEventList();
             CheckCanRemoveDriver();
         }
 
         private void OnSetDiver(object obj)
         {
-            Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new SelectPersonPopupPage());
+            Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new SelectPersonPopupPage(DriverSet, driveDefinition));
+        }
+
+        private void Refresh()
+        {
+            driveList = DataStore.GetListAsync().Result.ToList();
         }
 
         public override void OnAppearing()

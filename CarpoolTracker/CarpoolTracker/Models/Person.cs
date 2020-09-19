@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarpoolTracker.Helper;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -15,8 +16,8 @@ namespace CarpoolTracker.Models
         {
             return new List<Person>()
             {
-                new Person() {Id = Guid.NewGuid().ToString(), Name = "Max", Surname = "Mustermann", Color = Color.Beige},
-                new Person() {Id = Guid.NewGuid().ToString(), Name = "Jana", Surname = "Ipsum", Color = Color.LightBlue}
+                new Person() {Id = Guid.NewGuid().ToString(), Name = "Max", Surname = "Mustermann", Color = Color.Green},
+                new Person() {Id = Guid.NewGuid().ToString(), Name = "Jana", Surname = "Ipsum", Color = Color.Aqua}
             };
         }
     }
