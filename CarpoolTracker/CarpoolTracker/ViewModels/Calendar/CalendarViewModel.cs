@@ -80,9 +80,9 @@ namespace CarpoolTracker.ViewModels.Calendar
                 Definition = driveDefinition,
                 Driver = person
             });
-
             Refresh();
             LoadEventList();
+            CheckCanRemoveDriver();
         }
 
         private void LoadEventList()
