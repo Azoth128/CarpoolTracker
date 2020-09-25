@@ -20,6 +20,9 @@
 	  <Compile Update="Views\People\PeoplePage.xaml.cs">
 	    <DependentUpon>PeoplePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\SettingsPage.xaml.cs">
+	    <DependentUpon>SettingsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Tracks\TrackEditPage.xaml.cs">
 	    <DependentUpon>TrackEditPage.xaml</DependentUpon>
 	  </Compile>
@@ -33,6 +36,12 @@
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Views\People\PersonEditPage.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Views\SettingsPage.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Views\Statistics\StatisticPage.xaml">
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Views\Tracks\TrackEditPage.xaml">

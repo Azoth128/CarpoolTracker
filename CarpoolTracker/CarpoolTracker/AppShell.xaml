@@ -5,6 +5,7 @@
        xmlns:viewsPeople="clr-namespace:CarpoolTracker.Views.People"
        xmlns:viewsTracks="clr-namespace:CarpoolTracker.Views.Tracks"
        xmlns:viewCalendar="clr-namespace:CarpoolTracker.Views.Calendar"
+       xmlns:viewStatistic="clr-namespace:CarpoolTracker.Views.Statistics"
        Title="CarpoolTracker"
        x:Class="CarpoolTracker.AppShell">
 
@@ -83,13 +84,14 @@
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Calendar" ContentTemplate="{DataTemplate viewCalendar:CalendarPage}" />
-        <ShellContent Title="Tracks" ContentTemplate="{DataTemplate viewsTracks:TracksPage}" />
-        <ShellContent Title="People" ContentTemplate="{DataTemplate viewsPeople:PeoplePage}" />
+        <ShellContent Title="Calendar" Icon="{Binding Source=calendar_today.xml}" ContentTemplate="{DataTemplate viewCalendar:CalendarPage}" />
+        <ShellContent Title="Statistics" Icon="{Binding Source=analytics.xml}" ContentTemplate="{DataTemplate viewStatistic:StatisticPage}" />
+        <ShellContent Title="People" Icon="{Binding Source=people.xml}" ContentTemplate="{DataTemplate viewsPeople:PeoplePage}" />
+        <ShellContent Title="Settings" Icon="{Binding Source=settings.xml}" ContentTemplate="{DataTemplate views:SettingsPage}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked" />-->
+    <!--<MenuItem Text="Settings" IconImageSource="settings.xml" StyleClass="MenuItemLayoutStyle" Clicked="SettingsClickedCommand" />-->
 
     <!--
         This defines content that won't show up in a flyout menu. When this content is active the flyout menu won't be available.
