@@ -1,6 +1,10 @@
-﻿using CarpoolTracker.Views;
+﻿using CarpoolTracker.Models;
+using CarpoolTracker.Services;
+using CarpoolTracker.Views;
+using CarpoolTracker.Views.Calendar;
 using CarpoolTracker.Views.People;
 using CarpoolTracker.Views.Tracks;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace CarpoolTracker
@@ -10,6 +14,40 @@ namespace CarpoolTracker
         public AppShell()
         {
             InitializeComponent();
+            RegisterRoutes();
+
+            RecreateCalendarPages();
+        }
+
+        private void RecreateCalendarPages()
+        {
+            var oldContent = Flyout.Items.Where(section => !(section.CurrentItem.Content is CalendarPage)).ToList();
+
+            Flyout.Items.Clear();
+
+            //TODO: make sure in DataStore, that there is always a default definition
+            var definitions = DependencyService.Get<IDataStore<DriveDefinition>>()
+                .GetListAsync().Result
+                .ToList();
+
+            foreach (var definition in definitions)
+            {
+                var content = new ShellContent()
+                {
+                    Title = definition.Name,
+                    Icon = ImageSource.FromFile("calendar_today.xml"),
+                    Content = new CalendarPage(definition)
+                };
+
+                Flyout.Items.Add(content);
+            }
+
+            foreach (var shellContent in oldContent)
+                Flyout.Items.Add(shellContent);
+        }
+
+        private void RegisterRoutes()
+        {
             Routing.RegisterRoute(nameof(PersonDetailPage), typeof(PersonDetailPage));
             Routing.RegisterRoute(nameof(PersonEditPage), typeof(PersonEditPage));
             Routing.RegisterRoute(nameof(TrackDetailPage), typeof(TrackDetailPage));

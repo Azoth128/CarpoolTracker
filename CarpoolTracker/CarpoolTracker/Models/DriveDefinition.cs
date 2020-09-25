@@ -27,7 +27,8 @@ namespace CarpoolTracker.Models
 
             return new List<DriveDefinition>()
             {
-                new DriveDefinition() { Id = Guid.NewGuid().ToString(), Name = "Work", Track = tracks.Find(track => track.Name == "Work"), People = people }
+                new DriveDefinition() { Id = Guid.NewGuid().ToString(), Name = "Work", Track = tracks.Find(track => track.Name == "Work"), People = people },
+                new DriveDefinition() { Id = Guid.NewGuid().ToString(), Name = "School", Track = tracks.Find(track => track.Name == "Work"), People = people }
             };
         }
     }

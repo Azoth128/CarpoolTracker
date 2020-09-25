@@ -1,6 +1,5 @@
 ﻿using CarpoolTracker.Helper;
 using CarpoolTracker.Models;
-using CarpoolTracker.Services;
 using CarpoolTracker.Views.Calendar;
 using System;
 using System.Collections.Generic;
@@ -18,15 +17,11 @@ namespace CarpoolTracker.ViewModels.Calendar
         private List<Drive> driveList;
         private DateTime selected;
 
-        public CalendarViewModel(/*DriveDefinition driveDefinition*/)
+        public CalendarViewModel(DriveDefinition driveDefinition)
         {
-            //driveDefinition = driveDefinition ?? throw new ArgumentNullException();
-            //TODO: change to Constructor-Parameter
-            driveDefinition = DependencyService.Get<IDataStore<DriveDefinition>>()
-                .GetListAsync().Result
-                .FirstOrDefault() ?? throw new ArgumentNullException();
+            this.driveDefinition = driveDefinition ?? throw new ArgumentNullException();
 
-            Title = "Calendar";
+            Title = driveDefinition.Name;
 
             Events = new EventCollection();
             Refresh();

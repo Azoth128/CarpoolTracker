@@ -1,4 +1,5 @@
-﻿using CarpoolTracker.ViewModels.Calendar;
+﻿using CarpoolTracker.Models;
+using CarpoolTracker.ViewModels.Calendar;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,11 +10,11 @@ namespace CarpoolTracker.Views.Calendar
     {
         private readonly CalendarViewModel viewModel;
 
-        public CalendarPage()
+        public CalendarPage(DriveDefinition driveDefinition)
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new CalendarViewModel();
+            BindingContext = viewModel = new CalendarViewModel(driveDefinition);
         }
 
         protected override void OnAppearing()

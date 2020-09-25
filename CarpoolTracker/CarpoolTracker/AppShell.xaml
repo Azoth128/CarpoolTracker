@@ -83,8 +83,8 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Calendar" Icon="{Binding Source=calendar_today.xml}" ContentTemplate="{DataTemplate viewCalendar:CalendarPage}" />
+    <FlyoutItem x:Name="Flyout" FlyoutDisplayOptions="AsMultipleItems">
+        <!--CalendarPages are dynamically added in codeBehind-->
         <ShellContent Title="Statistics" Icon="{Binding Source=analytics.xml}" ContentTemplate="{DataTemplate viewStatistic:StatisticPage}" />
         <ShellContent Title="People" Icon="{Binding Source=people.xml}" ContentTemplate="{DataTemplate viewsPeople:PeoplePage}" />
         <ShellContent Title="Settings" Icon="{Binding Source=settings.xml}" ContentTemplate="{DataTemplate views:SettingsPage}" />
