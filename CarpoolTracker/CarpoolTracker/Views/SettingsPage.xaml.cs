@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using CarpoolTracker.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CarpoolTracker.Views
@@ -9,6 +10,8 @@ namespace CarpoolTracker.Views
         public SettingsPage()
         {
             InitializeComponent();
+
+            BindingContext = new SettingsViewModel();
         }
     }
 }

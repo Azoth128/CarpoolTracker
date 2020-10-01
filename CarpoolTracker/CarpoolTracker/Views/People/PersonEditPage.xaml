@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarpoolTracker.Views.People.PersonEditPage"
              xmlns:cp="clr-namespace:Udara.Plugin.XFColorPickerControl;assembly=Udara.Plugin.XFColorPickerControl"
-             xmlns:viewModel="clr-namespace:CarpoolTracker.ViewModels.People">
+             xmlns:viewModel="clr-namespace:CarpoolTracker.ViewModels.People"
+             Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout x:DataType="viewModel:PersonEditViewModel" Padding="15">
             <Label Margin="0, 0, 0, -10" Text="Name:" />

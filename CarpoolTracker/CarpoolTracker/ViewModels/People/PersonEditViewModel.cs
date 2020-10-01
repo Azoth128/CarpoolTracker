@@ -14,7 +14,7 @@ namespace CarpoolTracker.ViewModels.People
 
         public PersonEditViewModel()
         {
-            Title = "Person";
+            Title = "Edit Person";
         }
 
         public Color Color { get => color; set => SetProperty(ref color, value); }

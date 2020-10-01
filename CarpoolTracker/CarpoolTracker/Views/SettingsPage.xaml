@@ -1,13 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CarpoolTracker.Views.SettingsPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Tracks"/>
-            <Label Text="Data Settings"/>
-            <Label Text="copyright notice"/>
-            <Label Text="note of thanks"/>
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="CarpoolTracker.Views.SettingsPage"
+             xmlns:viewModel="clr-namespace:CarpoolTracker.ViewModels"
+             xmlns:views="clr-namespace:CarpoolTracker.Views"
+             Title="{Binding Title}"
+             x:DataType="viewModel:SettingsViewModel">
+
+    <CollectionView
+        ItemsSource="{Binding Items}"
+        SelectionMode="Single"
+        SelectedItem="{Binding Selected}"
+        Margin="15">
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="viewModel:SettingItem">
+                <StackLayout Margin="0, 0, 0, 10" Orientation="Horizontal">
+                    <Image Source="{Binding Image}" />
+                    <Label Text="{Binding Caption}" Margin="5,6,0,0" TextColor="Black" FontSize="Medium" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

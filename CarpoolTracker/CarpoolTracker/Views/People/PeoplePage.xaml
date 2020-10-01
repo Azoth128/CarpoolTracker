@@ -17,8 +17,10 @@
                 ItemsSource="{Binding Items}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="15" x:DataType="model:Person">
+                <DataTemplate x:DataType="model:Person">
+                    <StackLayout Orientation="Horizontal" Padding="15">
+                        <Frame BackgroundColor="{Binding Color}" />
+                        <StackLayout>                        
                         <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
                             FontSize="Large" />
@@ -29,6 +31,7 @@
                         <Label Text="{Binding Surname}"
                             LineBreakMode="NoWrap"
                             FontSize="Small" />
+                        </StackLayout>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer
                                 NumberOfTapsRequired="1"

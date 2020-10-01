@@ -48,7 +48,7 @@ namespace CarpoolTracker
 
         private void RegisterRoutes()
         {
-            Routing.RegisterRoute(nameof(PersonDetailPage), typeof(PersonDetailPage));
+            Routing.RegisterRoute(nameof(PeoplePage), typeof(PeoplePage));
             Routing.RegisterRoute(nameof(PersonEditPage), typeof(PersonEditPage));
             Routing.RegisterRoute(nameof(TrackDetailPage), typeof(TrackDetailPage));
             Routing.RegisterRoute(nameof(TrackEditPage), typeof(TrackEditPage));
