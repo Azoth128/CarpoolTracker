@@ -11,7 +11,6 @@ namespace CarpoolTracker
             InitializeComponent();
 
             DependencyService.Register<MockDataStore<Person>>();
-            DependencyService.Register<MockDataStore<Track>>();
             DependencyService.Register<MockDataStore<Drive>>();
             DependencyService.Register<MockDataStore<DriveDefinition>>();
             DependencyService.Register<MockDataStore<DrivePlan>>();
