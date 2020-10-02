@@ -17,6 +17,9 @@
 	  <Compile Update="Views\Calendar\SelectPersonPopupPage.xaml.cs">
 	    <DependentUpon>SelectPersonPopupPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\DriveDefinitions\DriveDefinitionsPage.xaml.cs">
+	    <DependentUpon>DriveDefinitionsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\People\PeoplePage.xaml.cs">
 	    <DependentUpon>PeoplePage.xaml</DependentUpon>
 	  </Compile>
@@ -30,6 +33,12 @@
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Views\Calendar\SelectPersonPopupPage.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Views\DriveDefinitions\DriveDefinitionEditPage.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Views\DriveDefinitions\DriveDefinitionsPage.xaml">
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Views\People\PersonEditPage.xaml">

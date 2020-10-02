@@ -1,4 +1,5 @@
-﻿using CarpoolTracker.Views.People;
+﻿using CarpoolTracker.Views.DriveDefinitions;
+using CarpoolTracker.Views.People;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
@@ -28,8 +29,8 @@ namespace CarpoolTracker.ViewModels
 
             Items = new ObservableCollection<SettingItem>()
             {
-                new SettingItem("Drive Definitions", "settings.xml", ""),
-                new SettingItem("People", "people.xml", $"{nameof(PeoplePage)}"),
+                new SettingItem("Drive Definitions", "settings.xml", nameof(DriveDefinitionsPage)),
+                new SettingItem("People", "people.xml", nameof(PeoplePage)),
                 new SettingItem("Data Saving Settings", "settings.xml", ""),
                 new SettingItem("copyright notice", "settings.xml", ""),
                 new SettingItem("note of thanks", "settings.xml", "")

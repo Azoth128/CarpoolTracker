@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarpoolTracker.Views.DriveDefinitions.DriveDefinitionsPage"
+             Title="{Binding Title}"
+             xmlns:viewModels="clr-namespace:CarpoolTracker.ViewModels.DriveDefinitions"
+             xmlns:model="clr-namespace:CarpoolTracker.Models"
+             x:DataType="viewModels:DriveDefinitionsViewModel">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Command="{Binding NewItemCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <RefreshView  Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:DriveDefinition">
+                    <StackLayout Orientation="Horizontal" Padding="15">
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontSize="Large" />
+                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DriveDefinitionsViewModel}}, Path=ItemTappedCommand}"
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

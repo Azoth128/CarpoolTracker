@@ -2,6 +2,7 @@
 using CarpoolTracker.Services;
 using CarpoolTracker.Views;
 using CarpoolTracker.Views.Calendar;
+using CarpoolTracker.Views.DriveDefinitions;
 using CarpoolTracker.Views.People;
 using System.Linq;
 using Xamarin.Forms;
@@ -50,6 +51,8 @@ namespace CarpoolTracker
             Routing.RegisterRoute(nameof(PeoplePage), typeof(PeoplePage));
             Routing.RegisterRoute(nameof(PersonEditPage), typeof(PersonEditPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(DriveDefinitionsPage), typeof(DriveDefinitionsPage));
+            Routing.RegisterRoute(nameof(DriveDefinitionEditPage), typeof(DriveDefinitionEditPage));
         }
     }
 }
