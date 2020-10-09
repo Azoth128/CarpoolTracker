@@ -7,6 +7,11 @@ namespace CarpoolTracker.ViewModels
     {
         private string itemId;
 
+        public DetailViewModel() : base()
+        {
+            itemId = "";
+        }
+
         public string ItemId { get => itemId; set { itemId = value ?? ""; LoadItem(); } }
 
         private async void LoadItem()
@@ -29,12 +34,5 @@ namespace CarpoolTracker.ViewModels
         }
 
         protected abstract void OnItemLoaded(T item);
-
-        public override void OnAppearing()
-        {
-            base.OnAppearing();
-            if (ItemId != "")
-                LoadItem();
-        }
     }
 }

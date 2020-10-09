@@ -12,7 +12,7 @@ namespace CarpoolTracker.ViewModels.People
         private string name;
         private string surname;
 
-        public PersonEditViewModel()
+        public PersonEditViewModel() : base()
         {
             Title = "Edit Person";
         }

@@ -7,7 +7,7 @@ namespace CarpoolTracker.Views.DriveDefinitions
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DriveDefinitionsPage : ContentPage
     {
-        private DriveDefinitionsViewModel viewModel;
+        private readonly DriveDefinitionsViewModel viewModel;
 
         public DriveDefinitionsPage()
         {

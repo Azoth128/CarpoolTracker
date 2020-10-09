@@ -6,7 +6,7 @@ namespace CarpoolTracker.ViewModels
 {
     public abstract class EditViewModel<T> : DetailViewModel<T> where T : class, IDataModel, new()
     {
-        public EditViewModel()
+        public EditViewModel() : base()
         {
             SaveCommand = new Command(OnSaveInternal, _ => CanSave());
             CancelCommand = new Command(OnCancel);

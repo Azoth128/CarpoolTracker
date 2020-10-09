@@ -19,7 +19,16 @@ namespace CarpoolTracker
             RecreateCalendarPages();
         }
 
-        private void RecreateCalendarPages()
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute(nameof(PeoplePage), typeof(PeoplePage));
+            Routing.RegisterRoute(nameof(PersonEditPage), typeof(PersonEditPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(DriveDefinitionsPage), typeof(DriveDefinitionsPage));
+            Routing.RegisterRoute(nameof(DriveDefinitionEditPage), typeof(DriveDefinitionEditPage));
+        }
+
+        public void RecreateCalendarPages()
         {
             var oldContent = Flyout.Items.Where(section => !(section.CurrentItem.Content is CalendarPage)).ToList();
 
@@ -44,15 +53,6 @@ namespace CarpoolTracker
 
             foreach (var shellContent in oldContent)
                 Flyout.Items.Add(shellContent);
-        }
-
-        private void RegisterRoutes()
-        {
-            Routing.RegisterRoute(nameof(PeoplePage), typeof(PeoplePage));
-            Routing.RegisterRoute(nameof(PersonEditPage), typeof(PersonEditPage));
-            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
-            Routing.RegisterRoute(nameof(DriveDefinitionsPage), typeof(DriveDefinitionsPage));
-            Routing.RegisterRoute(nameof(DriveDefinitionEditPage), typeof(DriveDefinitionEditPage));
         }
     }
 }

@@ -22,5 +22,11 @@ namespace CarpoolTracker.Views.People
         {
             viewModel.ExecuteColorChangedCommand(e);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.OnAppearing();
+        }
     }
 }

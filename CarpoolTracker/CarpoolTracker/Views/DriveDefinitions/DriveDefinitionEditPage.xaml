@@ -4,33 +4,17 @@
              x:Class="CarpoolTracker.Views.DriveDefinitions.DriveDefinitionEditPage"
              Title="{Binding Title}"
              xmlns:viewModels="clr-namespace:CarpoolTracker.ViewModels.DriveDefinitions"
-             xmlns:model="clr-namespace:CarpoolTracker.Models"
-             x:DataType="viewModels:DriveDefinitionsViewModel">
+             x:DataType="viewModels:DriveDefinitionEditViewModel">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New" Command="{Binding NewItemCommand}" />
-    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout x:DataType="viewModels:DriveDefinitionEditViewModel" Padding="15">
+            <Label Margin="0, 0, 0, -10" Text="Name:" />
+            <Entry Margin="0, 0, 0, 0" Text="{Binding Name}" />
 
-    <RefreshView  Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:DriveDefinition">
-                    <StackLayout Orientation="Horizontal" Padding="15">
-                        <StackLayout>
-                            <Label Text="{Binding Name}" FontSize="Large" />
-                        </StackLayout>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DriveDefinitionsViewModel}}, Path=ItemTappedCommand}"
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>
+            <StackLayout Margin="0, 25, 0, 0" Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
