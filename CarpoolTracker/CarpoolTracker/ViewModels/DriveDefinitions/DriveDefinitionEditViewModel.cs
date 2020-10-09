@@ -13,7 +13,9 @@ namespace CarpoolTracker.ViewModels.DriveDefinitions
         {
             Title = "Create Drive Definition";
 
+#pragma warning disable IDE0039 // Lokale Funktion verwenden
             PropertyChangedEventHandler _event = null;
+#pragma warning restore IDE0039 // Lokale Funktion verwenden
             _event = (object sender, PropertyChangedEventArgs e) =>
             {
                 if (e.PropertyName == "Name")
