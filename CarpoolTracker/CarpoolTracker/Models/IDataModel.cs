@@ -1,7 +1,9 @@
-﻿namespace CarpoolTracker.Models
+﻿using System;
+
+namespace CarpoolTracker.Models
 {
     public interface IDataModel
     {
-        string Id { get; set; }
+        Guid Id { get; set; }
     }
 }

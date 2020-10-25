@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CarpoolTracker.Services
@@ -7,9 +8,9 @@ namespace CarpoolTracker.Services
     {
         Task<bool> AddAsync(T t);
 
-        Task<bool> DeleteAsync(string id);
+        Task<bool> DeleteAsync(T t);
 
-        Task<T> GetAsync(string id);
+        Task<T> GetAsync(Guid id);
 
         Task<IEnumerable<T>> GetListAsync(bool forceRefresh = false);
 

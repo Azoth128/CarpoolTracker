@@ -65,12 +65,12 @@ namespace CarpoolTracker.ViewModels.Calendar
             driveList.ForEach(async drive =>
             {
                 if (drive.Definition == driveDefinition && drive.Date.Date == selected.Date)
-                    await DataStore.DeleteAsync(drive.Id);
+                    await DataStore.DeleteAsync(drive);
             });
 
             await DataStore.AddAsync(new Drive()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid(),
                 Date = selected,
                 Definition = driveDefinition,
                 Driver = person
@@ -100,7 +100,7 @@ namespace CarpoolTracker.ViewModels.Calendar
             driveList.ForEach(async drive =>
             {
                 if (drive.Definition == driveDefinition && drive.Date.Date == Selected.Date)
-                    await DataStore.DeleteAsync(drive.Id);
+                    await DataStore.DeleteAsync(drive);
             });
             Refresh();
             LoadEventList();

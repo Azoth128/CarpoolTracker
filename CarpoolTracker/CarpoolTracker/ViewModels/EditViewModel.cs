@@ -23,9 +23,9 @@ namespace CarpoolTracker.ViewModels
         {
             T item;
             if (IsInsert)
-                item = new T() { Id = Guid.NewGuid().ToString() };
+                item = new T() { Id = Guid.NewGuid() };
             else
-                item = await DataStore.GetAsync(ItemId);
+                item = await DataStore.GetAsync(Guid.Parse(ItemId));
 
             OnSave(item);
 

@@ -1,4 +1,5 @@
 ﻿using CarpoolTracker.Services;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,8 @@ namespace CarpoolTracker.Models
 {
     public class DriveDefinition : IDataModel, IHasTestValues<DriveDefinition>
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
         public List<Person> People { get; set; }
 
@@ -21,8 +23,8 @@ namespace CarpoolTracker.Models
 
             return new List<DriveDefinition>()
             {
-                new DriveDefinition() { Id = Guid.NewGuid().ToString(), Name = "Work", People = people },
-                new DriveDefinition() { Id = Guid.NewGuid().ToString(), Name = "School", People = people }
+                new DriveDefinition() { Id = Guid.NewGuid(), Name = "Work", People = people },
+                new DriveDefinition() { Id = Guid.NewGuid(), Name = "School", People = people }
             };
         }
     }

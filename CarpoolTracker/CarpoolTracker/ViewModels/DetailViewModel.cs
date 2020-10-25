@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace CarpoolTracker.ViewModels
 {
@@ -12,7 +13,18 @@ namespace CarpoolTracker.ViewModels
             itemId = "";
         }
 
-        public string ItemId { get => itemId; set { itemId = value ?? ""; LoadItem(); } }
+        public string ItemId
+        {
+            get => itemId;
+            set
+            {
+                if (!Guid.TryParse(value, out _))
+                    throw new ArgumentOutOfRangeException();
+
+                itemId = value ?? "";
+                LoadItem();
+            }
+        }
 
         private async void LoadItem()
         {
@@ -24,7 +36,7 @@ namespace CarpoolTracker.ViewModels
             IsBusy = true;
             try
             {
-                var item = await DataStore.GetAsync(ItemId);
+                var item = await DataStore.GetAsync(Guid.Parse(ItemId));
                 OnItemLoaded(item);
             }
             finally
