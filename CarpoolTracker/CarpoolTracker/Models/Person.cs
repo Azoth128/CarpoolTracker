@@ -1,12 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 
 namespace CarpoolTracker.Models
 {
     public class Person : IDataModel, IHasTestValues<Person>
     {
+        public int Argb
+        {
+            get
+            {
+                return Color.ToArgb();
+            }
+            set
+            {
+                Color = Color.FromArgb(value);
+            }
+        }
+
+        [NotMapped]
         public Color Color { get; set; }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

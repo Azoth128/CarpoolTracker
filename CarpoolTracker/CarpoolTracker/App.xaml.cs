@@ -1,5 +1,7 @@
-﻿using CarpoolTracker.Models;
+﻿using CarpoolTracker.Migrations;
+using CarpoolTracker.Models;
 using CarpoolTracker.Services;
+using CarpoolTracker.Services.Databases;
 using Xamarin.Forms;
 
 namespace CarpoolTracker
@@ -10,10 +12,11 @@ namespace CarpoolTracker
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore<Person>>();
-            DependencyService.Register<MockDataStore<Drive>>();
-            DependencyService.Register<MockDataStore<DriveDefinition>>();
-            DependencyService.Register<MockDataStore<DrivePlan>>();
+            var db = new DatabaseContext();
+            DependencyService.RegisterSingleton<IDataStore<Person>>(new EfDataStoreConnector<Person>(db.People, db));
+            DependencyService.RegisterSingleton<IDataStore<Drive>>(new EfDataStoreConnector<Drive>(db.Drives, db));
+            DependencyService.RegisterSingleton<IDataStore<DriveDefinition>>(new EfDataStoreConnector<DriveDefinition>(db.DriveDefinitions, db));
+            DependencyService.RegisterSingleton<IDataStore<DrivePlan>>(new EfDataStoreConnector<DrivePlan>(db.DrivePlans, db));
 
             MainPage = new AppShell();
         }
